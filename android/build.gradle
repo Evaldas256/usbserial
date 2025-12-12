@@ -7,7 +7,6 @@ buildscript {
         jcenter()
         maven { url "https://jitpack.io" }
     }
-
     dependencies {
         classpath 'com.android.tools.build:gradle:4.1.0'
     }
@@ -18,17 +17,6 @@ rootProject.allprojects {
         google()
         jcenter()
         maven { url "https://jitpack.io" }
-    }
-
-    // Force version if something requests UsbSerial2 without version
-    configurations.all {
-        resolutionStrategy.eachDependency { details ->
-            if (details.requested.group == 'com.github.Evaldas256'
-                    && details.requested.name == 'UsbSerial2'
-                    && details.requested.version == null) {
-                details.useVersion('v6.1.0-pid8056')
-            }
-        }
     }
 
     gradle.projectsEvaluated {
@@ -42,7 +30,6 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 33
-
     namespace 'dev.bessems.usbserial'
 
     defaultConfig {
@@ -50,9 +37,7 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
-    lintOptions {
-        disable 'InvalidPackage'
-    }
+    lintOptions { disable 'InvalidPackage' }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -61,7 +46,5 @@ android {
 }
 
 dependencies {
-    implementation('com.github.Evaldas256:UsbSerial2:usbserial:v6.1.0-pid8056') {
-        transitive = true
-    }
+    implementation 'com.github.Evaldas256.UsbSerial2:usbserial:v6.1.0-pid8056'
 }
