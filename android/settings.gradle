@@ -1,4 +1,6 @@
 rootProject.name = 'usb_serial'
+
 include ':UsbSerial2_usbserial'
 project(':UsbSerial2_usbserial').projectDir = new File(rootProject.projectDir, 'UsbSerial2/usbserial')
+
 
